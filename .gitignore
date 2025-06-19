@@ -74,3 +74,7 @@ Plugins/**/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 /Plugins/VisualStudioTools
+/Content/SpaceshipsCreatorExpand
+/Content/EssentialsIconPack/PC
+/Content/UltimateSpaceshipCreator
+/Content/UI_SFX_Free_Pack
