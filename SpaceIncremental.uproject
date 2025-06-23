@@ -52,10 +52,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "AbilitySystemGameFeatureActions",
-			"Enabled": true
-		},
-		{
 			"Name": "SoundUtilities",
 			"Enabled": true
 		},
