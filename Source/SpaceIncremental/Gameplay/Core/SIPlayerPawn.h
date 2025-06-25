@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "SIPlayerPawn.generated.h"
 
+class UFloatingPawnMovement;
+
 UCLASS()
 class SPACEINCREMENTAL_API ASIPlayerPawn : public APawn
 {
@@ -25,5 +27,19 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	void MoveHorizontal(float InMovementDirection);
+
+	UFUNCTION(BlueprintCallable)
+	void MoveVertical(float InMovementDirection);
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float RotationSpeedMultiplyer = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UFloatingPawnMovement* MovementComponent;
 
 };
