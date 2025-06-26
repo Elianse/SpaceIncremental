@@ -4,40 +4,11 @@
 #include "SpaceIncremental/Gameplay/Core/GlobalEventsManager.h"
 #include "SIGenericGameObject.h"
 
-void UGlobalEventsManager::StartGame()
+
+void UGlobalEventsManager::ChangeGameState(EGameState InGameState)
 {
-	if (bGameIsInProgress)
-	{
-		return;
-	}
-
-	HideObjectsOfType(EGameObjectType::GameStartVolume);
-	HideObjectsOfType(EGameObjectType::HubObject);
-
-	ShowObjectsOfType(EGameObjectType::BattleObject);
-	ShowObjectsOfType(EGameObjectType::EnemySpawner);
-
-	bGameIsInProgress = true;
-
-	OnGameStateChanged.Broadcast(EGameState::InBattle);
-}
-
-void UGlobalEventsManager::FinishGame()
-{
-	if (!bGameIsInProgress)
-	{
-		return;
-	}
-
-	HideObjectsOfType(EGameObjectType::BattleObject);
-	HideObjectsOfType(EGameObjectType::EnemySpawner);
-
-	ShowObjectsOfType(EGameObjectType::GameStartVolume);
-	ShowObjectsOfType(EGameObjectType::HubObject);
-
-	bGameIsInProgress = false;
-
-	OnGameStateChanged.Broadcast(EGameState::Chill);
+	CurrentGameState = InGameState;
+	OnGameStateChanged.Broadcast(CurrentGameState);
 }
 
 void UGlobalEventsManager::RegisterGameObject(ASIGenericGameObject* InGameObject, EGameObjectType InObjectType)

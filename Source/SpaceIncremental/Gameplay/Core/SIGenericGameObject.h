@@ -13,10 +13,10 @@ class SPACEINCREMENTAL_API ASIGenericGameObject : public AActor
 
 public:
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void HideObject();
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void ShowObject();
 
 protected:

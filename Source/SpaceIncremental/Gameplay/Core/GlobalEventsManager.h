@@ -23,6 +23,7 @@ enum class EGameObjectType : uint8
 UENUM(BlueprintType, Blueprintable)
 enum class EGameState : uint8
 {
+	InTitleMenu,
 	Chill,
 	InBattle,
 };
@@ -50,10 +51,7 @@ class SPACEINCREMENTAL_API UGlobalEventsManager : public UWorldSubsystem
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void StartGame();
-
-	UFUNCTION(BlueprintCallable)
-	void FinishGame();
+	void ChangeGameState(EGameState InGameState);
 
 	UFUNCTION(BlueprintCallable)
 	void RegisterGameObject(ASIGenericGameObject* InGameObject, EGameObjectType InObjectType);
@@ -71,7 +69,8 @@ public:
 
 private:
 
-	bool bGameIsInProgress = false;
+	UPROPERTY(Transient)
+	EGameState CurrentGameState;
 
 	UPROPERTY(Transient)
 	TMap<EGameObjectType, FGameObjectContainer> GameObjects;

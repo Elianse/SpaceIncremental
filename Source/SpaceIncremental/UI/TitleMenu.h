@@ -13,5 +13,8 @@ UCLASS()
 class SPACEINCREMENTAL_API UTitleMenu : public UCommonUserWidget
 {
 	GENERATED_BODY()
+
+	virtual void NativeConstruct() override;
+	virtual void NativeDestruct() override;
 	
 };
