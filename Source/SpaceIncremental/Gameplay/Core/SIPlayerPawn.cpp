@@ -43,13 +43,6 @@ void ASIPlayerPawn::Tick(float DeltaTime)
 	SetActorRotation(FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, RotationSpeedMultiplyer));
 }
 
-// Called to bind functionality to input
-void ASIPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-
 void ASIPlayerPawn::MoveHorizontal(float InMovementDirection)
 {
 	if (!IsValid(MovementComponent))
@@ -68,5 +61,22 @@ void ASIPlayerPawn::MoveVertical(float InMovementDirection)
 		return;
 	}
 	MovementComponent->AddInputVector(FVector(InMovementDirection, 0, 0));
+}
+
+void ASIPlayerPawn::Shoot()
+{
+	UWorld* World = GetWorld();
+	if (!IsValid(World))
+	{
+		UE_LOG(LogTemp, Error, TEXT("ASIPlayerPawn::Shoot: World is invalid!"));
+		return;
+	}
+
+	FTransform ProjectileTransform = GetActorTransform();
+
+	FVector ProjectileLocation = ProjectileTransform.GetLocation() + ProjectileTransform.GetRotation().RotateVector(FVector::ForwardVector * ProjectileOffset);
+	ProjectileTransform.SetLocation(ProjectileLocation);
+
+	ASISimpleProjectile* Projectile = World->SpawnActor<ASISimpleProjectile>(ProjectileClass, ProjectileTransform);
 }
 
