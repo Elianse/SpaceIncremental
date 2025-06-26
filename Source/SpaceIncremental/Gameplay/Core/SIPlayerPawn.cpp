@@ -74,7 +74,7 @@ void ASIPlayerPawn::Shoot()
 
 	FTransform ProjectileTransform = GetActorTransform();
 
-	FVector ProjectileLocation = ProjectileTransform.GetLocation() + ProjectileTransform.GetRotation().RotateVector(FVector::ForwardVector * ProjectileOffset);
+	FVector ProjectileLocation = ProjectileTransform.GetLocation() + ProjectileTransform.GetRotation().RotateVector(FVector::ForwardVector);
 	ProjectileTransform.SetLocation(ProjectileLocation);
 
 	ASISimpleProjectile* Projectile = World->SpawnActor<ASISimpleProjectile>(ProjectileClass, ProjectileTransform);

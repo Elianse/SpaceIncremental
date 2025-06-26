@@ -9,7 +9,8 @@
 void ASIPlayerController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
-	InPawn->OnDestroyed.AddDynamic(this, &ASIPlayerController::OnPawnDestroyed);
+	InPawn->OnDestroyed.RemoveAll(this);
+	InPawn->OnDestroyed.AddUniqueDynamic(this, &ASIPlayerController::OnPawnDestroyed);
 }
 
 void ASIPlayerController::OnPawnDestroyed(AActor* DestroyedActor)

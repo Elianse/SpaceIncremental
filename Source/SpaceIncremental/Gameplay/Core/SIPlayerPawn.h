@@ -48,8 +48,5 @@ public:
 	TSubclassOf<ASISimpleProjectile> ProjectileClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile")
-	FVector ProjectileOffset = FVector::ZeroVector;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile")
 	float ShootSpeed = 0.25;
 };
