@@ -2,4 +2,70 @@
 
 
 #include "SpaceIncremental/Gameplay/Core/GlobalEventsManager.h"
+#include "SIGenericGameObject.h"
 
+void UGlobalEventsManager::StartGame()
+{
+	if (bGameIsInProgress)
+	{
+		return;
+	}
+
+	HideObjectsOfType(EGameObjectType::GameStartVolume);
+	HideObjectsOfType(EGameObjectType::HubObject);
+
+	ShowObjectsOfType(EGameObjectType::BattleObject);
+	ShowObjectsOfType(EGameObjectType::EnemySpawner);
+
+	bGameIsInProgress = true;
+}
+
+void UGlobalEventsManager::FinishGame()
+{
+	if (!bGameIsInProgress)
+	{
+		return;
+	}
+
+	HideObjectsOfType(EGameObjectType::BattleObject);
+	HideObjectsOfType(EGameObjectType::EnemySpawner);
+
+	ShowObjectsOfType(EGameObjectType::GameStartVolume);
+	ShowObjectsOfType(EGameObjectType::HubObject);
+
+	bGameIsInProgress = false;
+}
+
+void UGlobalEventsManager::RegisterGameObject(ASIGenericGameObject* InGameObject, EGameObjectType InObjectType)
+{
+	FGameObjectContainer& ObjectContainer = GameObjects.FindOrAdd(InObjectType);
+	ObjectContainer.GameObjects.Emplace(InGameObject);
+}
+
+void UGlobalEventsManager::HideObjectsOfType(EGameObjectType InObjectType)
+{
+	FGameObjectContainer& ObjectContainer = GameObjects.FindOrAdd(InObjectType);
+	for (auto Object : ObjectContainer.GameObjects)
+	{
+		if (!IsValid(Object))
+		{
+			continue;
+		}
+
+		Object->HideObject();
+	}
+}
+
+void UGlobalEventsManager::ShowObjectsOfType(EGameObjectType InObjectType)
+{
+	FGameObjectContainer& ObjectContainer = GameObjects.FindOrAdd(InObjectType);
+	for (auto& Object : ObjectContainer.GameObjects)
+	{
+		if (!IsValid(Object))
+		{
+			continue;
+		}
+
+		Object->ShowObject();
+	}
+}
