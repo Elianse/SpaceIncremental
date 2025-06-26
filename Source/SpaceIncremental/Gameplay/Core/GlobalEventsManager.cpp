@@ -18,6 +18,8 @@ void UGlobalEventsManager::StartGame()
 	ShowObjectsOfType(EGameObjectType::EnemySpawner);
 
 	bGameIsInProgress = true;
+
+	OnGameStateChanged.Broadcast(EGameState::InBattle);
 }
 
 void UGlobalEventsManager::FinishGame()
@@ -34,6 +36,8 @@ void UGlobalEventsManager::FinishGame()
 	ShowObjectsOfType(EGameObjectType::HubObject);
 
 	bGameIsInProgress = false;
+
+	OnGameStateChanged.Broadcast(EGameState::Chill);
 }
 
 void UGlobalEventsManager::RegisterGameObject(ASIGenericGameObject* InGameObject, EGameObjectType InObjectType)
