@@ -9,8 +9,6 @@ void UGlobalEventsManager::ChangeGameState(EGameState InGameState)
 {
 	PreviousGameState = CurrentGameState;
 	CurrentGameState = InGameState;
-
-	UE_LOG(LogTemp, Log, TEXT("[GameState] game state changed to %s"), *GameStateToString(InGameState));
 	OnGameStateChanged.Broadcast(CurrentGameState);
 }
 
@@ -56,22 +54,4 @@ void UGlobalEventsManager::ShowObjectsOfType(EGameObjectType InObjectType)
 
 		Object->ShowObject();
 	}
-}
-
-FString UGlobalEventsManager::GameStateToString(EGameState InGameState)
-{
-	switch (InGameState)
-	{
-	case EGameState::InBattle:
-		return TEXT("In Battle");
-	case EGameState::Chill:
-		return TEXT("Chill");
-	case EGameState::InPauseMenu:
-		return TEXT("In Pause Menu");
-	case EGameState::InScoreMenu:
-		return TEXT("In Score Menu");
-	case EGameState::InTitleMenu:
-		return TEXT("In Title Menu");
-	}
-	return FString();
 }

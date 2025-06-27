@@ -70,10 +70,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ShowObjectsOfType(EGameObjectType InObjectType);
 
-private:
-
-	FString GameStateToString(EGameState InGameState);
-
 public:
 
 	UPROPERTY(BlueprintAssignable)

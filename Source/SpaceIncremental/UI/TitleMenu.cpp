@@ -7,7 +7,7 @@
 void UTitleMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	UWorld* World = GetWorld();
+	/*UWorld* World = GetWorld();
 	if (!IsValid(World))
 	{
 		UE_LOG(LogTemp, Error, TEXT("UTitleMenu::NativeConstruct: World is invalid!"));
@@ -21,17 +21,17 @@ void UTitleMenu::NativeConstruct()
 		return;
 	}
 
-	EventsManager->ChangeGameState(EGameState::InTitleMenu);
+	EventsManager->ChangeGameState(EGameState::InTitleMenu);*/
 
 }
 
 void UTitleMenu::NativeDestruct()
 {
 	Super::NativeDestruct();
-	UWorld* World = GetWorld();
+	/*UWorld* World = GetWorld();
 	if (!IsValid(World))
 	{
-		UE_LOG(LogTemp, Error, TEXT("UTitleMenu::NativeDestruct: World is invalid!"));
+		UE_LOG(LogTemp, Error, TEXT("UTitleMenu::NativeConstruct: World is invalid!"));
 		return;
 	}
 
@@ -42,5 +42,5 @@ void UTitleMenu::NativeDestruct()
 		return;
 	}
 
-	EventsManager->ChangeGameState(EGameState::Chill);
+	EventsManager->ChangeGameState(EGameState::Chill);*/
 }

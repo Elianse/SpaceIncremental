@@ -35,4 +35,13 @@ void ASIPlayerController::OnPawnDestroyed(AActor* DestroyedActor)
 			Possess(RespawnedCharacter);
 		}
 	}
+
+	UGlobalEventsManager* EventsManager = Cast<UGlobalEventsManager>(World->GetSubsystem<UGlobalEventsManager>());
+	if (!IsValid(EventsManager))
+	{
+		UE_LOG(LogTemp, Error, TEXT("ASIPlayerController::OnPawnDestroyed: UGlobalEventsManager is invalid!"));
+		return;
+	}
+
+	EventsManager->ChangeGameState(EGameState::InScoreMenu);
 }
